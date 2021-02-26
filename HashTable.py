@@ -71,6 +71,4 @@ class HashTable:
       ll.print_nodes()
       print (f"DONE")
 
-
-
     
