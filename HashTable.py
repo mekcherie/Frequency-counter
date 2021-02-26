@@ -27,22 +27,33 @@ class HashTable:
   # Hash functions are a function that turns each of these keys into an index value that we can use to decide where in our list each key:value pair should be stored. 
 
   def hash_func(self, key):
-    m_word = key[0].lower()
-    dist_a = ord(m_word) - ord('a')
-    index = dist_a % self.size 
-
+     
+    index = hash(key) % self.size
     return index 
-
-
+    
   # 3️⃣ TODO: Complete the insert method.
 
   # Should insert a key value pair into the hash table, where the key is the word and the value is a counter for the number of times the word appeared. When inserting a new word in the hash table, be sure to check if there is a Node with the same key in the table already.
 
   def insert(self, key, value):
-    pass
 
+    # 1. finding the hash_key 
+      hash_key = self.hash_func(key)
+    # 2. if statement to check if a word exists in the ll using find
+      ll = self.arr[hash_key].find(key) 
+      if ll == -1: 
+    
+    # 3.f accessing ll, and the function inside there(append)
+        self.arr[hash_key].append(key, value)
 
-
+      else:
+    # 3.t store the viarable of tuple
+    # 4. delete the tuple(its not changable)
+        item = self.arr[hash_key].remove_song(key)
+    # 5. make a new tuple, that add 1 to the viarable
+        # new_item = (key, item[1] + 1) 
+    # 6. accessing ll, and the function inside there(append)
+        self.arr[hash_key].append(key, item[1] + 1)
 
   # 4️⃣ TODO: Complete the print_key_values method.
 
@@ -54,3 +65,12 @@ class HashTable:
   # and: 1
   # blooms: 1
   # erase: 2
+
+  def print_key_values(self):
+    for ll in self.arr:
+      ll.print_nodes()
+      print (f"DONE")
+
+
+
+    

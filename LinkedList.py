@@ -6,8 +6,8 @@ class LinkedList:
     self.head = None
 
 
-  def append(self, new_data):
-    new_node = Node(new_data)
+  def append(self, key, value):
+    new_node = Node(key, value)
     new_node.next = self.head
     self.head = new_node
 
@@ -15,13 +15,12 @@ class LinkedList:
   def find(self,item):
 
     current = self.head
-
     found = False
     counter = 0
 
     while current != None and not found:
-
-      if current.data == item:
+# changing the data value
+      if current.data[0] == item:
         found = True
       else:
         current = current.next
@@ -31,8 +30,6 @@ class LinkedList:
       return counter
     else:
       return -1
-
-
 
   def length(self):
     if self.head == None:
@@ -44,6 +41,22 @@ class LinkedList:
         current = current.next
         counter +=1
       return counter
+
+  def remove_song(self, title):
+    current_song = self.head
+
+    if current_song.get_title()[0] == title: 
+      item = current_song.get_title()
+      self.head = current_song.get_next_song()
+      return item
+    else: 
+      while current_song.get_title()[0] != title:
+        if current_song.get_next_song().get_title()[0] == title: 
+          item = current_song.get_title()
+          current_song.set_next_song(current_song.get_next_song().get_next_song())
+          return item
+        else: 
+          current_song = current_song.get_next_song()
 
 
   def print_nodes(self):

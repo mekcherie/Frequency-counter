@@ -37,9 +37,6 @@ with open(filename,'r') as file:
     for word in line.split(): 
       word = word.strip(string.punctuation)
       words_in_file.append(word.lower())
-      
-
-
 
 # Prints message to user stating how many words are being added to the table.
 # Also displays the list of words that wre generated above.
